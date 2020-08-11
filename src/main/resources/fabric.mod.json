@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "doublejump",
+  "version": "${version}",
+  "name": "Double Jump Mod",
+  "description": "Adds an enchantment for boots that allows you to jump mid-air.",
+  "authors": [
+    "TurtleArmyMc"
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "assets/doublejump/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.turtlearmymc.doublejump.Doublejump"
+    ],
+    "client": [
+      "com.turtlearmymc.doublejump.DoublejumpClient"
+    ],
+    "server": []
+  },
+  "mixins": [
+    "doublejump.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.9.0",
+    "fabric": "*"
+  }
+}
