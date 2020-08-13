@@ -27,7 +27,7 @@ public class Doublejump implements ModInitializer {
 
     public static Enchantment DOUBLE_JUMP;
 
-    public static final Identifier C2S_PLAY_EFFECTS_REQUEST_PACKET_ID = new Identifier("doublejump", "request_effects");
+    public static final Identifier C2S_DOUBLE_JUMP_PACKET_ID = new Identifier("doublejump", "request_effects");
     public static final Identifier S2C_PLAY_EFFECTS_PACKET_ID = new Identifier("doublejump", "play_effects");
 
     @Override
@@ -39,7 +39,7 @@ public class Doublejump implements ModInitializer {
             new EnchantmentDoublejump(Enchantment.Weight.RARE, new EquipmentSlot[]{EquipmentSlot.FEET})
         );
 
-        ServerSidePacketRegistry.INSTANCE.register(C2S_PLAY_EFFECTS_REQUEST_PACKET_ID,
+        ServerSidePacketRegistry.INSTANCE.register(C2S_DOUBLE_JUMP_PACKET_ID,
             (packetContext, attachedData) -> {
                 PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
                 passedData.writeUuid(attachedData.readUuid());
@@ -48,6 +48,8 @@ public class Doublejump implements ModInitializer {
 
                 packetContext.getTaskQueue().execute(
                     () -> {
+                        player.fallDistance = 0;
+
                         Stream<PlayerEntity> watchingPlayers = PlayerStream.watching(player.getEntityWorld(), player.getBlockPos());
 
                         watchingPlayers.forEach(

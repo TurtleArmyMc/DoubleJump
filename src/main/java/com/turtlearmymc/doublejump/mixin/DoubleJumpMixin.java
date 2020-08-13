@@ -36,13 +36,14 @@ public abstract class DoubleJumpMixin {
                 if (canJump(player)) {
                     --jumpCount;
                     player.jump();
+                    player.fallDistance = 0;
 
                     DoubleJumpEffect.play(player);
 
                     PacketByteBuf passedData = new PacketByteBuf(Unpooled.buffer());
                     passedData.writeUuid(player.getUuid());
 
-                    ClientSidePacketRegistry.INSTANCE.sendToServer(Doublejump.C2S_PLAY_EFFECTS_REQUEST_PACKET_ID, passedData);
+                    ClientSidePacketRegistry.INSTANCE.sendToServer(Doublejump.C2S_DOUBLE_JUMP_PACKET_ID, passedData);
                 }
             }
         }

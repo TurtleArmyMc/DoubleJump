@@ -24,7 +24,16 @@ public class DoubleJumpEffect {
             double d = random.nextGaussian() * 0.02D;
             double e = random.nextGaussian() * 0.02D;
             double f = random.nextGaussian() * 0.02D;
-            world.addParticle(ParticleTypes.CLOUD, effectPlayer.getParticleX(1.0D), effectPlayer.getY(), effectPlayer.getParticleZ(1.0D), d, e, f);
+            world.addParticle(ParticleTypes.CLOUD, getParticleX(effectPlayer), effectPlayer.y, getParticleZ(effectPlayer), d, e, f);
         }
     }
+
+    private static double getParticleX(PlayerEntity player) {
+        return player.x + (double)(random.nextFloat() * player.getWidth() * 2.0F) - (double)player.getWidth();
+    }
+
+    private static double getParticleZ(PlayerEntity player) {
+        return player.z + (double)(random.nextFloat() * player.getWidth() * 2.0F) - (double)player.getWidth();
+    }
+
 }
