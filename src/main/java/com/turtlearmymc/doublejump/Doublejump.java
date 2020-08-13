@@ -11,8 +11,8 @@ import net.fabricmc.fabric.api.server.PlayerStream;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.PacketByteBuf;
 import net.minecraft.util.registry.Registry;
 
 import org.apache.logging.log4j.Level;
@@ -36,7 +36,7 @@ public class Doublejump implements ModInitializer {
         DOUBLE_JUMP = Registry.register(
             Registry.ENCHANTMENT,
             new Identifier(MOD_ID, "doublejump"),
-            new EnchantmentDoublejump(Enchantment.Rarity.RARE, new EquipmentSlot[]{EquipmentSlot.FEET})
+            new EnchantmentDoublejump(Enchantment.Weight.RARE, new EquipmentSlot[]{EquipmentSlot.FEET})
         );
 
         ServerSidePacketRegistry.INSTANCE.register(C2S_PLAY_EFFECTS_REQUEST_PACKET_ID,

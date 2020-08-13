@@ -19,7 +19,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ElytraItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.network.PacketByteBuf;
+import net.minecraft.util.PacketByteBuf;
 
 @Mixin(ClientPlayerEntity.class)
 public abstract class DoubleJumpMixin {
@@ -29,7 +29,7 @@ public abstract class DoubleJumpMixin {
     @Inject(method="tickMovement", at = @At("HEAD"))
     private void tickMovement(CallbackInfo info) {
         ClientPlayerEntity player = (ClientPlayerEntity) (Object) this;
-        if (player.isOnGround() || player.isClimbing()) {
+        if (player.onGround || player.isClimbing()) {
             jumpCount = EnchantmentHelper.getEquipmentLevel(Doublejump.DOUBLE_JUMP, player);
         } else if (!jumpedLastTick && jumpCount > 0 && player.getVelocity().y < 0) {
             if (player.input.jumping && !player.abilities.flying) {
